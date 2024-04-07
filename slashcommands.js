@@ -1,6 +1,7 @@
 const fs = require("fs");
 const discord = require("discord.js");
 const config = require("./config.json");
+const token = require("./token.json");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const { clientId, guildId } = require("./config.json");
@@ -14,7 +15,7 @@ for (const file of slashcommandsFiles) {
   commands.push(slash.data.toJSON());
 }
 
-const rest = new REST({ version: "9" }).setToken(config.token);
+const rest = new REST({ version: "9" }).setToken(token.token);
 
 createSlash();
 

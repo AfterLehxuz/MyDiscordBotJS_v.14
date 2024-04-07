@@ -5,7 +5,7 @@ const {
   Collection,
 } = require("discord.js");
 const config = require("../config.json");
-const token = config.token;
+const token = require("../token.json");
 const fs = require("fs");
 const path = require("path");
 
@@ -39,7 +39,7 @@ client.on("ready", () => {
   console.log(`¡Listo como ${client.user.tag}!`);
 });
 
-client.login(token);
+client.login(token.token);
 
 // Manejador de eventos para capturar errores en el cliente Discord.js
 client.on("error", console.error);
@@ -60,7 +60,6 @@ const slashcommandsFiles = fs
   .filter((file) => file.endsWith(".js"));
 
 for (const file of slashcommandsFiles) {
-  console.log(`Cargando archivo: ${file}`);
   const slash = require(path.join(slashcommandsDir, file));
   console.log(`Cargado comando slash: ${file}`);
   client.slashcommands.set(slash.data.name, slash);
